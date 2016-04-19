@@ -1,5 +1,6 @@
 package pl.keban.soskr.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,6 +14,7 @@ public class Cattery {
     @GeneratedValue
     private Long id;
 	
+	@Column(nullable=false)
 	private String name;
 
 	public Long getId() {
