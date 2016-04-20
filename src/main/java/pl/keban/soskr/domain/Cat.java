@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -16,6 +17,7 @@ public class Cat {
 	private Long id;
 	private String name;
 	private Date dateOfBirth;
+	@ManyToOne
 	private Breed breed;
 	private Boolean neutered;
 	
