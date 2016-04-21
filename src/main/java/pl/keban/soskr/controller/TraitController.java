@@ -14,31 +14,39 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import pl.keban.soskr.domain.Cattery;
+import pl.keban.soskr.domain.Trait;
 import pl.keban.soskr.services.CatteryService;
+import pl.keban.soskr.services.TraitService;
 
 @RestController
 @RequestMapping("/trait")
 public class TraitController {
 
 	@Autowired
-	CatteryService catteryService;
+	TraitService traitService;
 
 	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping(method = RequestMethod.POST)
-	public void createCattery(@RequestBody String name) {
-		catteryService.createCattery(name);
+	public void createTrait(@RequestBody String group, @RequestBody String name, @RequestBody String code) {
+		traitService.createTrait(group, name, code);
 	}
 
 	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	public Cattery getCattery(@PathVariable  Long id) {
-		return catteryService.getCattery(id);
+	public Trait getCattery(@PathVariable  Long id) {
+		return traitService.getTrait(id);
 	}
 
 	@ResponseStatus(HttpStatus.OK)
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public List<Cattery> list() {
-		return catteryService.getList();
+	public List<Trait> getAll() {
+		return traitService.getList();
+	}
+	
+	@ResponseStatus(HttpStatus.OK)
+	@RequestMapping(value = "/{group}", method = RequestMethod.GET)
+	public List<Trait> getAllForGroup(@PathVariable String group) {
+		return traitService.getAllTraitForGroup(group);
 	}
 	
 	@ExceptionHandler(Exception.class)

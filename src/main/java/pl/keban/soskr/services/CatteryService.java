@@ -10,10 +10,9 @@ import pl.keban.soskr.domain.Cattery;
 import pl.keban.soskr.repository.CatteryRepository;
 
 @Service
-public class CatteryService{
+public class CatteryService {
 
-	@Autowired
-	CatteryRepository catteryRepository;
+	private CatteryRepository catteryRepository;
 
 	@Transactional
 	public void createCattery(String name) {
@@ -26,16 +25,25 @@ public class CatteryService{
 		return catteryRepository.findAll();
 	}
 
-	public Cattery getCattery(long id) {
+	public Cattery getCattery(Long id) {
 		return catteryRepository.findOne(id).get();
 	}
 
-	public long save(Cattery cattery) {
+	public Long save(Cattery cattery) {
 		return catteryRepository.save(cattery).getId();
 	}
 
-	public void delete(long id) {
+	public void delete(Long id) {
 		catteryRepository.delete(id);
+	}
+
+	public CatteryRepository getCatteryRepository() {
+		return catteryRepository;
+	}
+
+	@Autowired
+	public void setCatteryRepository(CatteryRepository catteryRepository) {
+		this.catteryRepository = catteryRepository;
 	}
 
 }
