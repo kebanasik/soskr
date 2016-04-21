@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import pl.keban.soskr.dao.CatteryRepository;
 import pl.keban.soskr.domain.Cattery;
+import pl.keban.soskr.repository.CatteryRepository;
 
 @Service
 public class CatteryService{
@@ -23,15 +23,15 @@ public class CatteryService{
 	}
 
 	public List<Cattery> getList() {
-		return catteryRepository.getCatteryList();
+		return catteryRepository.findAll();
 	}
 
 	public Cattery getCattery(long id) {
-		return catteryRepository.findCatteryById(id);
+		return catteryRepository.findOne(id).get();
 	}
 
 	public long save(Cattery cattery) {
-		return catteryRepository.save(cattery);
+		return catteryRepository.save(cattery).getId();
 	}
 
 	public void delete(long id) {
